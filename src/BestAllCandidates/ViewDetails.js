@@ -12,6 +12,7 @@ import DownloadRoundedIcon from "@mui/icons-material/DownloadRounded";
 import Button from "@mui/joy/Button";
 import axiosInstance from "../axios";
 import {  useParams } from 'react-router-dom';
+import RefreshIcon from '@mui/icons-material/Refresh';
 
 
 export default function ViewDetails() {
@@ -67,14 +68,14 @@ React.useEffect(() => {
             }}
           >
             <Typography level="h2" component="h1">
-              Orders
+              Highly accurate algorithm:
             </Typography>
             <Button
               color="primary"
-              startDecorator={<DownloadRoundedIcon />}
+              startDecorator={<RefreshIcon />}
               size="sm"
             >
-              Download PDF
+              Click to refresh
             </Button>
           </Box>
     <Tabs

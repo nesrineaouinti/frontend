@@ -22,6 +22,9 @@ export default function DashboardPage() {
             <Sidebar />
             <Header />
             <Routes>
+
+                 {/*TODO <Route path="statistic" element={<Statistic />} /> */}
+                 {/*TODO <Route path="contactus" element={<Contactus />} /> */}
                 <Route path="jobs" element={<JobsTableTest />} />
                 <Route path="editjob/:jobId" element={<EditJob />} />
                 <Route path="viewdetails/:jobId" element={<ViewDetails />} />

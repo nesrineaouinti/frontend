@@ -38,7 +38,7 @@ function Textt() {
 
 function OrangeBtnn() {
   return (
-    <Box
+    <Box id="applysteps"
       width="fit-content"
       display="flex"
       flexWrap="wrap"
@@ -64,8 +64,8 @@ function OrangeBtnn() {
 
 function Apply() {
   return (
-    <Box sx={{ pt: 3 }}>
-      <Grid
+    <Box  sx={{ pt: 3 }}>
+      <Grid 
         container
         columns={{ xs: 2, md: 4 }}
         columnSpacing={{ sm: 7, md: 7, xs: 10, l: 11 }}
@@ -240,7 +240,7 @@ export default function ApplySteps() {
       sx={{ pt:{xs:8,sm:10} ,display: "flex", flexDirection: "column", alignItems: "center" }}
     >
       <OrangeBtnn />
-      <Textt />
+      <Textt  />
       <Apply />
     </Container>
   );

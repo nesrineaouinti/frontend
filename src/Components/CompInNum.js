@@ -7,7 +7,7 @@ import { Button, Typography, Stack, Container, Divider } from "@mui/material";
 
 export default function CompInNum() {
   return (
-    <Box sx={{ bgcolor: "#fafcff" }} height={219}>
+    <Box  sx={{ bgcolor: "#fafcff" }} height={219}>
       <Stack
         direction={{ md: "row" }} //min md wenti tala3 row , weli 9bal md column //I checked where exactly it breaks 
         justifyContent="space-evenly"         //in 928px , so I set that it will be row on md(900) so when it reaches 928 it will be fine

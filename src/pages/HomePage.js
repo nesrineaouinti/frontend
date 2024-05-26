@@ -8,7 +8,7 @@ import Footer from "../Components/footer";
 import { Stack,Box, Container } from '@mui/material';
 
 import ExploreJobs from '../Components/exploreJobs';
-import Dabox from '../StatusTracker/Dabox';
+import Dabox from '../StatusTracker/MySpace';
 import PromotedJobs from '../Components/PromotedJobs';
 
 export default function HomePage(){

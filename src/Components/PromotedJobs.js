@@ -11,11 +11,27 @@ import axiosInstance from "../axios";
 import { useNavigate } from "react-router-dom";
 import OneJob from "./oneJob";
 import ExploreJobs from "./exploreJobs";
+import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+
+
+
+function ScrollToTop() {
+    const { pathname } = useLocation();
+  
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, [pathname]);
+  
+    return null;
+  }
+  <ScrollToTop/>
 
 
 
 export default function PromotedJobs(){
     const [jobs, setJobs] = useState([]);
+    const navigate=useNavigate();
 
 
 
@@ -47,6 +63,9 @@ export default function PromotedJobs(){
         <Container>
         <ExploreJobs/>
         <OneJob jobs={jobs} />
+        <Box align='center'  sx={{pt:3, pb:5}}>  <Button component={Link}
+      to="/jobs" sx={{px:10}} variant='contained'>View More...</Button> </Box>
+        
         </Container>
 
 

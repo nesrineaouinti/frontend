@@ -5,7 +5,7 @@ import ContentPasteSearchIcon from '@mui/icons-material/ContentPasteSearch';
 
 function Textt() {
     return (
-      <Box
+      <Box id="Featured"
         display="flex"
         flexDirection="column"
         align="center"

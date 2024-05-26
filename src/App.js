@@ -35,13 +35,26 @@ import SignUpPageSimple from './pages/SignUpPageSimple';
 import { useNavigate } from 'react-router-dom';
 import EditJob from './EditProfiles/EditJob';
 import PromotedJobs from './Components/PromotedJobs';
-
+import AllJobs from './pages/AllJobs';
 
 
 import './App.css';
 import { Typography } from '@mui/material';
-import Dabox from './StatusTracker/Dabox';
+
 import CodeSignUp from './pages/CodeSignUp';
+import MySpace from './StatusTracker/MySpace';
+
+import { useLocation } from 'react-router-dom';
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
 
 
 
@@ -67,6 +80,7 @@ function Logout() {
 function App() {
     return (
         <Router>
+          <ScrollToTop />
             <Routes>
                 <Route path='signup/user/confirmpage/:email' element={<CodeSignUp/> } />
                 <Route path="/" element={<HomePage />} />
@@ -75,13 +89,15 @@ function App() {
                 <Route path="/resetpass" element={<ResetPassPage />} />
                 <Route path="/jobdetails/:jobId/" element={<JobDetailsPage />} />
                 <Route path="/createjob" element={<CreateJob />} />
-                <Route path="/myspace" element={<Dabox />} />
+                <Route path="/myspace" element={<MySpace />} />
                 <Route path="/logout" element={<Logout />} />
                 <Route path="/profile" element={<EditProfile />} />
                 <Route path="/dashboard/*" element={<DashboardPage />} /> 
                 <Route path="/resetpassword" element={<ResetPassPage/>} />
+                <Route path="/jobs" element={<AllJobs/>} />
+
                 
-                {/* <Route path="" element={<stepperCom/>} /> */}
+                
 
                 
 

@@ -1,5 +1,5 @@
 {
-  "homepage": "https://Hamza-Riabi.github.io/frontend",
+  
 
   "name": "demo",
   "version": "0.1.0",
@@ -22,8 +22,7 @@
   },
   "scripts": {
     
-    "predeploy": "npm run build",
-    "deploy":"gh-pages -d build",
+    
 
     "start": "react-scripts start",
     "build": "react-scripts build",

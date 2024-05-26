@@ -22,6 +22,7 @@ import IconButton from "@mui/material/IconButton";
 import FlipCameraIosOutlinedIcon from "@mui/icons-material/FlipCameraIosOutlined";
 import axiosInstance from "../axios";
 import { Title } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -51,6 +52,7 @@ export default function CreateJob() {
   const [summary, setSummary] = useState("");
   const [skills, setSkills] = useState("Web dev");
   const [description, setDescription] = useState("");
+  const Navigate=useNavigate()
 
   
   
@@ -224,7 +226,7 @@ export default function CreateJob() {
                     </Grid>
                   </Grid>
                   <Stack direction="row" justifyContent="flex-end" gap={2}>
-                    <Button variant="outlined" sx={{ mt: 3, mb: 2 }}>
+                    <Button variant="outlined" sx={{ mt: 3, mb: 2 }} onClick={()=>{Navigate(-1)}}>
                       Cancel
                     </Button>
                     <Button

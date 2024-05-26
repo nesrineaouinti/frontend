@@ -132,54 +132,40 @@ export default function NavBar() {
 
               <Box sx={{ display: { xs: "none", md: "flex" } }}>
                 <MenuItem
-                  onClick={() => scrollToSection("features")}
+                  onClick={() => scrollToSection("applysteps")}
                   sx={{ py: "6px", px: "12px" }}
                 >
                   <Typography variant="body2" color="text.primary">
-                    Features
+                    How to Apply
                   </Typography>
                 </MenuItem>
                 <MenuItem
-                  onClick={() => scrollToSection("testimonials")}
+                  onClick={() => scrollToSection("Featured")}
                   sx={{ py: "6px", px: "12px" }}
                 >
                   <Typography variant="body2" color="text.primary">
-                    Testimonials
+                    Featured
                   </Typography>
                 </MenuItem>
                 <MenuItem
-                  onClick={() => scrollToSection("highlights")}
+                  onClick={() => scrollToSection("contactus")}
                   sx={{ py: "6px", px: "12px" }}
                 >
                   <Typography variant="body2" color="text.primary">
-                    Highlights
+                    Contact Us
                   </Typography>
                 </MenuItem>
-                <MenuItem
-                  onClick={() => scrollToSection("pricing")}
-                  sx={{ py: "6px", px: "12px" }}
-                >
-                  <Typography variant="body2" color="text.primary">
-                    Pricing
-                  </Typography>
-                </MenuItem>
-                <MenuItem
-                  onClick={() => scrollToSection("faq")}
-                  sx={{ py: "6px", px: "12px" }}
-                >
-                  <Typography variant="body2" color="text.primary">
-                    FAQ
-                  </Typography>
-                </MenuItem>
+               
+               
                 {/* on PC, isLoggedIn=>show jobs tabs , when clicked transfer to all Jobs page */}
                 {isLoggedIn && (
                   <MenuItem
-                    onClick={() => scrollToSection("jobs")}
+                    
                     sx={{ py: "6px", px: "12px" }}
-                  >
+                  > <Link to="/jobs" style={{ textDecoration: 'none', color: 'inherit', width:'100%'}}>
                     <Typography variant="body2" color="text.primary">
-                      Jobs
-                    </Typography>
+                      Jobs 
+                    </Typography> </Link>
                   </MenuItem>
                 )}
               </Box>
@@ -310,25 +296,22 @@ export default function NavBar() {
                       flexGrow: 1,
                     }}
                   ></Box>
-                  <MenuItem onClick={() => scrollToSection("features")}>
-                    Features
+                  <MenuItem onClick={() => scrollToSection("applysteps")}>
+                    How to apply
                   </MenuItem>
-                  <MenuItem onClick={() => scrollToSection("testimonials")}>
-                    Testimonials
+                  <MenuItem onClick={() => scrollToSection("Featured")}>
+                  Featured
                   </MenuItem>
-                  <MenuItem onClick={() => scrollToSection("highlights")}>
-                    Highlights
+                  <MenuItem onClick={() => scrollToSection("contactus")}>
+                    Contact Us
                   </MenuItem>
-                  <MenuItem onClick={() => scrollToSection("pricing")}>
-                    Pricing
-                  </MenuItem>
-                  <MenuItem onClick={() => scrollToSection("faq")}>
-                    FAQ
-                  </MenuItem>
+                  
+                  
                   {/* on mobile, isLoggedIn=>show jobs tabs , when clicked transfer to all Jobs page */}
                   {isLoggedIn && (
-                    <MenuItem onClick={() => scrollToSection("jobs")}>
-                      Jobs
+                    <MenuItem >
+                    <Link to="/jobs" style={{ textDecoration: 'none', color: 'inherit', width:'100%'}}>
+                      Jobs</Link>
                     </MenuItem>
                   )}
                   <Divider />

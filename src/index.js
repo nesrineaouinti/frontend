@@ -32,8 +32,8 @@ import DashboardPage from './Dashboard/DashboardPage';
 import SignUpPageSimple from './pages/SignUpPageSimple'; 
 import CreateJob from './EditProfiles/CreateJob';
 import SignInPage from './pages/SignInPage';
-import OrderListOrig from './Dashboard/OrderListOrig';
-import TableSortAndSelection from './Dashboard/OrderListOrig';
+
+
 
 import JobsTableTest from './Dashboard/JobsTableTest';
 
@@ -42,7 +42,7 @@ import ViewDetails from './BestAllCandidates/ViewDetails';
 import Applicationss from './BestAllCandidates/Applications';
 import EditJob from './EditProfiles/EditJob';
 import ModalCv from './Dashboard/ModalCv';
-import Dabox from './StatusTracker/Dabox';
+import Dabox from './StatusTracker/MySpace';
 import AllCandidates from './BestAllCandidates/AllCandidats';
 import { alpha } from "@mui/material";
 import SignUpPage from './pages/SignUpPage';

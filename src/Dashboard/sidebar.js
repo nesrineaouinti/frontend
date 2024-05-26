@@ -34,10 +34,14 @@ import { useNavigate } from "react-router-dom";
 
 export default function Sidebar() {
   const navigate=useNavigate() ;
-  const [index,setIndex]=React.useState(2)
+  const [index,setIndex]=React.useState(1)
 
 
-
+  const logoStyle = {
+    width: 40,
+    height: "auto",
+    cursor: "pointer",
+  };
 
   const [userData, setUserData] = useState({
     email: '',
@@ -137,9 +141,13 @@ export default function Sidebar() {
         onClick={() => closeSidebar()}
       />
       <Box sx={{ display: "flex", gap: 1.3, alignItems: "center" }}>
-        <IconButton variant="soft" color="primary" size="sm">
-          <BrightnessAutoRoundedIcon />
-        </IconButton>
+      <img
+                    src={
+                      "https://3dsmartfactory.csit.ma/images/2nd-black-logo.png"
+                    }
+                    style={logoStyle}
+                    alt="logo of sitemark"
+                  />
         <Typography level="title-lg">3D SMART factory.</Typography>
       </Box>
       <Divider />
@@ -169,7 +177,7 @@ export default function Sidebar() {
             onClick={() => setIndex(1)}>
               <HomeRoundedIcon />
               <ListItemContent>
-                <Typography level="title-sm">Home</Typography>
+                <Typography level="title-sm">Dashboard</Typography>
               </ListItemContent>
             </ListItemButton>
           </ListItem>

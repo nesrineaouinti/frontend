@@ -134,6 +134,7 @@ export default function JobsTableTest({onEditJob,onViewDetails}) {
 
 
     const handleDelete = (jobId) => {
+      if (window.confirm("Are you sure you want to delete this job?")){
       
       axiosInstance.delete(`jobs/${jobId}/delete/`)
         .then(response => {
@@ -142,7 +143,7 @@ export default function JobsTableTest({onEditJob,onViewDetails}) {
         })
         .catch(error => {
           alert("Error deleting job");
-        });
+        });}
     };
  
 

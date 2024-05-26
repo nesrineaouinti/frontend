@@ -13,6 +13,8 @@ import { Badge, Stack } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import IconButton from "@mui/material/IconButton";
 import axiosInstance from "../axios";
+import { useNavigate } from "react-router-dom";
+
 
 
 
@@ -22,6 +24,7 @@ const defaultTheme = createTheme();
 //implement the logic to only request code when user changes email or pass, name is fine without code
 
 export default function EditProfile() {
+  const Navigate=useNavigate()
   
   const [password, setPassword] = useState("");
   // const [firstName, setFirstName] = useState("");
@@ -207,7 +210,7 @@ export default function EditProfile() {
                 </Grid>
               </Grid>
               <Stack direction="row" justifyContent="flex-end" gap={2}>
-                <Button variant="outlined" sx={{ mt: 3, mb: 2 }}>
+                <Button variant="outlined" sx={{ mt: 3, mb: 2 }} onClick={()=>{Navigate(-1)}}>
                   Cancel
                 </Button>
                 <Button onClick={handleSubmit} variant="contained" sx={{ mt: 3, mb: 2 }}>

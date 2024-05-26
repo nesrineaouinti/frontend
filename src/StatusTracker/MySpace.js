@@ -22,7 +22,7 @@ function formatDate(dateTimeStr) {
     const date = new Date(dateTimeStr);
     return date.toLocaleDateString(); // This will format the date based on the locale
   }
-export default function Dabox(){
+export default function MySpace(){
 
     const [myApplications, setMyApplications] = useState([]);
     //{ admin

@@ -11,6 +11,7 @@ import Box from "@mui/joy/Box";
 import DownloadRoundedIcon from "@mui/icons-material/DownloadRounded";
 import Button from "@mui/joy/Button";
 import axiosInstance from "../axios";
+import RefreshIcon from '@mui/icons-material/Refresh';
 
 
 export default function AllCandidates() {
@@ -70,14 +71,14 @@ React.useEffect(() => {
             }}
           >
             <Typography level="h2" component="h1">
-              Orders
+             For all the active jobs:
             </Typography>
             <Button
               color="primary"
-              startDecorator={<DownloadRoundedIcon />}
+              startDecorator={<RefreshIcon />}
               size="sm"
             >
-              Download PDF
+              Click to refresh
             </Button>
           </Box>
     <Tabs
