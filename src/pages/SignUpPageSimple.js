@@ -14,8 +14,9 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useState, useEffect } from "react";
 import { Stack } from "@mui/material";
-import { useNavigate } from 'react-router-dom';
-
+import { useNavigate } from "react-router-dom";
+import { ToastContainer , toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 //added
 import axiosInstance from "../axios";
 
@@ -90,8 +91,8 @@ export default function SignUpPageSimple() {
 
     if (!hasErrors) {
       console.log(firstName, lastName, email, password);
-      
-      localStorage.clear() //remove potential tokens of old sign in users
+
+      localStorage.clear(); //remove potential tokens of old sign in users
       axiosInstance
         .post(`user/register/`, {
           email: email,
@@ -99,37 +100,26 @@ export default function SignUpPageSimple() {
           last_name: lastName,
           password: password,
         })
-        .then((res) => {  //.then = succ op
-          
-          
-
+        .then((res) => {
+          //.then = succ op
           console.log(res);
           console.log(res.data);
-          alert("Registration successful!")
+          toast.success("Registration successful!");
           navigate(`user/confirmpage/${email}`);
-          
         })
-        .catch((error) => { //.catch there is error
+        .catch((error) => {
+          //.catch there is error
           // Handle any errors that occur during registration
-          console.error("Registration failed:", error);
+          console.error("Registration failed:", error.response.data.email);
           // You can also alert the user about the failure if needed
-          //TODO handle duplicate user status code (if statuscode =409 then please login ) see in the backend 
-          alert("Registration failed. Please try again later.");
+          //TODO handle duplicate user status code (if statuscode =409 then please login ) see in the backend
+          toast.error(`${error.response.data.email}`);
         });
-        
     }
   };
-  
-    
-    
-    
-
-
-  
 
   return (
     <ThemeProvider theme={defaultTheme}>
-       
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -252,6 +242,7 @@ export default function SignUpPageSimple() {
         </Box>
         <Copyright sx={{ mt: 5 }} />
       </Container>
+      <ToastContainer />
     </ThemeProvider>
   );
 }

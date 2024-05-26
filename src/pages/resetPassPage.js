@@ -12,14 +12,12 @@ import axiosInstance from "../axios";
 import PasswordMeterInput from "../Components/passwordMeterInput";
 
 const ResetPassPage = (props) => {
-  const navigate=useNavigate();
-  
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
-  const [code,setCode]=useState("");
+  const [code, setCode] = useState("");
   const [isVerified, setIsVerified] = useState(false);
-  
 
   const handleSendCode = () => {
     if (email === "") {
@@ -30,57 +28,39 @@ const ResetPassPage = (props) => {
       setEmailError("Please enter a valid email");
       return;
     }
-    
-    axiosInstance.post(`user/sendcode/${email}/`)
-    
+
+    axiosInstance
+      .post(`user/sendcode/${email}/`)
+
       .then((res) => {
-        alert("code sent successfully , check your email")
-
-    })
+        alert("code sent successfully , check your email");
+      })
       .catch((error) => {
-        console.error( error);
+        console.error(error);
         alert("error sending code");
-      }); 
-
-    
-    
-
-
-
-
-
+      });
   };
 
   const handleCodeSubmit = () => {
-    
-    
-    const trimmedEmail = email.trim();  //remove whitespaces if there is a space email=user.email doesnt work
+    const trimmedEmail = email.trim(); //remove whitespaces if there is a space email=user.email doesnt work
     const trimmedCode = code.trim();
-    axiosInstance.post(`user/verifycode/`,{
-      email: trimmedEmail,
-      code: trimmedCode,
-    })
-    
-    .then((res) => {
-      alert("Code verified successfully")
+    axiosInstance
+      .post(`user/verifycode/`, {
+        email: trimmedEmail,
+        code: trimmedCode,
+      })
 
-      setIsVerified(true)  //this will show us the component to enter our new password
-      
-  })
-    .catch((error) => {
-      console.error( error);
-      alert("Invalid email or code.");
-    }); 
+      .then((res) => {
+        alert("Code verified successfully");
 
-
-
-    
-    
-
+        setIsVerified(true); //this will show us the component to enter our new password
+      })
+      .catch((error) => {
+        console.error(error);
+        alert("Invalid email or code.");
+      });
   };
 
-  
- 
   const [newPassword, setNewPassword] = useState("");
   // React.useEffect(() => {
   //   console.log("New Password:", newPassword);
@@ -95,7 +75,6 @@ const ResetPassPage = (props) => {
         alignItems: "center",
       }}
     >
-      
       <Avatar sx={{ m: 1, bgcolor: "secondary.light" }}>
         <LockResetIcon />
       </Avatar>
@@ -133,7 +112,7 @@ const ResetPassPage = (props) => {
             marginTop={1}
             spacing={9}
           >
-            <Button variant="outlined" onClick={handleSendCode} size="small" >
+            <Button variant="outlined" onClick={handleSendCode} size="small">
               Send code
             </Button>
             <TextField
@@ -141,22 +120,25 @@ const ResetPassPage = (props) => {
               variant="standard"
               label="Enter code here"
               value={code}
-              onChange={(e)=>{setCode(e.target.value)}}
+              onChange={(e) => {
+                setCode(e.target.value);
+              }}
             />
           </Stack>
           <Button
-            disabled={code.length<6 && !emailError}
+            disabled={code.length < 6 && !emailError}
             variant="contained"
             sx={{ mt: 10 }}
             onClick={handleCodeSubmit}
           >
             Submit
           </Button>
-        </Box>) : (<Box><PasswordMeterInput email={email}/></Box>) }
-        
-        
-     
-      
+        </Box>
+      ) : (
+        <Box>
+          <PasswordMeterInput email={email} />
+        </Box>
+      )}
     </Box>
   );
 };
