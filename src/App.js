@@ -35,14 +35,14 @@ import SignUpPageSimple from './pages/SignUpPageSimple';
 import { useNavigate } from 'react-router-dom';
 import EditJob from './EditProfiles/EditJob';
 import PromotedJobs from './Components/PromotedJobs';
-import stepperCom from './StatusTracker/stepperCom';
+
 
 
 import './App.css';
 import { Typography } from '@mui/material';
 import Dabox from './StatusTracker/Dabox';
 import CodeSignUp from './pages/CodeSignUp';
-import DashTest from './Dashboard/DashTest';
+
 
 
 
@@ -80,7 +80,7 @@ function App() {
                 <Route path="/profile" element={<EditProfile />} />
                 <Route path="/dashboard/*" element={<DashboardPage />} /> 
                 <Route path="/resetpassword" element={<ResetPassPage/>} />
-                <Route path='/' element={<DashTest/>} />
+                
                 {/* <Route path="" element={<stepperCom/>} /> */}
 
                 

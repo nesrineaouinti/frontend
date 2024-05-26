@@ -20,18 +20,15 @@ import FormLabel from "@mui/material/FormLabel";
 
 import axiosInstance from '../axios';
 import { useNavigate } from 'react-router-dom';
+//added 
 
 
-function RadioGrp() {
-  const [value, setValue] = React.useState("candidat");
 
+const RadioGrp = ({ userType, setUserType }) => {
   const handleChange = (event) => {
-    setValue(event.target.value);
+    setUserType(event.target.value);
   };
-  useEffect(() => {
-    //Log the updated value when myVariable changes
-    console.log("Updated value:", value);
-  }, [value]); // This effect runs whenever myVariable changes
+
   return (
     <FormControl>
       <FormLabel id="demo-controlled-radio-buttons-group">You are:</FormLabel>
@@ -39,19 +36,15 @@ function RadioGrp() {
         row
         aria-labelledby="demo-controlled-radio-buttons-group"
         name="controlled-radio-buttons-group"
-        value={value}
+        value={userType}
         onChange={handleChange}
       >
-        <FormControlLabel
-          value="candidat"
-          control={<Radio />}
-          label="Candidat"
-        />
+        <FormControlLabel value="candidat" control={<Radio />} label="Candidat" />
         <FormControlLabel value="admin" control={<Radio />} label="Admin" />
       </RadioGroup>
     </FormControl>
   );
-}
+};
 
 function Copyright(props) {
   return (
@@ -63,7 +56,7 @@ function Copyright(props) {
     >
       {"Copyright © "}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        3D SMART FACTORY
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -75,6 +68,7 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
+
 const SignInPage = () => {
   if (localStorage.getItem('access_token')) {
     //if he is already signed in and tries to access /signin Redirect the user to another page, for example, the home page  //for register as well we can do that , but for register we did local.clear() anyway when he register
@@ -85,6 +79,9 @@ const SignInPage = () => {
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [userType, setUserType] = useState("candidat"); // Added state for radio group
+  const [accessToken,setAccessToken] = useState("")
+  const [refreshToken,setRefreshToken] = useState("")
 
   const navigate = useNavigate();
 
@@ -106,6 +103,7 @@ const SignInPage = () => {
     
     axiosInstance.post(`token/`, { email, password })
         .then((res) => {
+            
             localStorage.setItem('access_token', res.data.access);
             localStorage.setItem('refresh_token', res.data.refresh);
             axiosInstance.defaults.headers['Authorization'] = 'JWT ' + res.data.access;
@@ -118,6 +116,142 @@ const SignInPage = () => {
             // You might want to handle the error visually for the user here as well
         });
 };
+
+// const handleSubmit = (e) => {
+  
+//   e.preventDefault();
+
+//   if (!email) {
+//       setEmailError("Please enter your email");
+//       return;
+//   } else if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
+//       setEmailError("Please enter a valid email");
+//       return;
+//   }
+
+//   if (!password) {
+//       setPasswordError("Please enter your password");
+//       return;
+//   }
+  
+//   axiosInstance.post(`token/`, { email, password })
+//       .then((res) => {
+        
+          
+//           setAccessToken(res.data.access);
+//           setRefreshToken( res.data.refresh);
+          
+//           //jawo behy logged in succ , taw we check his role 
+//           checkUserRoleAndNavigate();
+         
+//       })
+//       .catch((err) => {
+//           console.error('Error during authentication', err);
+//           alert("Email or password incorrect")
+          
+//       });
+
+//       const checkUserRoleAndNavigate = () => {
+//          //we set the default header of the request , so user can send requests with his access token saved to his request
+//         axiosInstance.get(`checkifadmin/` , {
+//           headers: {
+//               'Authorization': `JWT ${accessToken}`
+//           }
+//       })  // we will check the role from the sent access token 
+//             .then((res) => {
+                 
+//                 if ((res.data)) {
+//                   console.log(res.data)
+//                   alert("login successful as Admin!")
+//                   axiosInstance.defaults.headers['Authorization'] = 'JWT ' + accessToken; //we set the default header of the request , so user can send requests with his access token saved to his request
+
+//                     navigate('/dashboard');
+//                 } else {
+//                   alert("login successful! as candidat")
+//                     navigate('/');
+//                 }
+//             })
+            
+//             .catch((err) => {
+//                 console.error('Error fetching user role', err);
+//                 alert('Error identifying user type')
+                 
+//             });
+
+
+
+
+// };}
+
+// const handleSubmit = async (e) => {
+//   e.preventDefault();
+
+//   if (!email) {
+//       setEmailError("Please enter your email");
+//       return;
+//   } else if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
+//       setEmailError("Please enter a valid email");
+//       return;
+//   }
+
+//   if (!password) {
+//       setPasswordError("Please enter your password");
+//       return;
+//   }
+
+//   try {
+//       const tokenResponse = await axiosInstance.post(`token/`, { email, password });
+//       const accessToken = tokenResponse.data.access;
+//       const refreshToken = tokenResponse.data.refresh;
+
+//       setAccessToken(accessToken);
+//       setRefreshToken(refreshToken);
+      
+//       axiosInstance.defaults.headers['Authorization'] = `JWT ${accessToken}`;
+
+//       await checkUserRoleAndNavigate(accessToken);
+//   } catch (err) {
+//       console.error('Error during authentication', err);
+//       alert("Email or password incorrect");
+//   }
+// };
+
+// const checkUserRoleAndNavigate = async (accessToken) => {
+//   try {
+//       const roleResponse = await axiosInstance.get(`checkifadmin/`
+//         );
+//       if (!roleResponse.data) {
+//         console.log(roleResponse.data);
+//           alert("Login successful as Admin!");
+//           navigate('/dashboard');
+//       } else {
+//           alert("Login successful as Candidate!");
+//           navigate('/');
+//       }
+//   } catch (err) {
+//       console.error('Error fetching user role', err);
+//       alert('Error identifying user type');
+//   }
+// };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   return (
@@ -139,7 +273,7 @@ const SignInPage = () => {
             Sign in
           </Typography>
           <Box component="form" noValidate sx={{ mt: 1 }}>
-            <RadioGrp  />
+          <RadioGrp userType={userType} setUserType={setUserType} />
             <TextField
               value={email}
               margin="normal"

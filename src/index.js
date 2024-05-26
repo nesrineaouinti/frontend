@@ -34,9 +34,9 @@ import CreateJob from './EditProfiles/CreateJob';
 import SignInPage from './pages/SignInPage';
 import OrderListOrig from './Dashboard/OrderListOrig';
 import TableSortAndSelection from './Dashboard/OrderListOrig';
-import JobsTable from './Dashboard/JobsTable';
+
 import JobsTableTest from './Dashboard/JobsTableTest';
-import StepperCom from './StatusTracker/stepperCom';
+
 import StepperComp2 from './StatusTracker/stepperCom2';
 import ViewDetails from './BestAllCandidates/ViewDetails';
 import Applicationss from './BestAllCandidates/Applications';
@@ -47,7 +47,8 @@ import AllCandidates from './BestAllCandidates/AllCandidats';
 import { alpha } from "@mui/material";
 import SignUpPage from './pages/SignUpPage';
 import ResetPassPage from './pages/resetPassPage';
-import DashTest from './Dashboard/DashTest';
+
+
 
 
 

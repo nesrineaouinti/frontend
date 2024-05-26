@@ -104,7 +104,7 @@ export default function CreateJob() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <CssBaseline /> 
-      <Box sx={{ flex: 1, width: "100%" }}>
+      <Box sx={{ flex: 1, width: "100%" ,pt:{xs:6}} }>
         <Stack
           spacing={4}
           sx={{

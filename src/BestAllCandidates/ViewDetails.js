@@ -88,6 +88,7 @@ React.useEffect(() => {
         overflow: "auto",
         
         
+        
       }}
     >
       <TabList
@@ -117,7 +118,7 @@ React.useEffect(() => {
       </TabList>
       <TabPanel value={0} sx={{height:'100%'}}>
       <Button>execute algorithm</Button>
-       {/*  <Applicationss data={applications}/>*/}
+         <Applicationss data={applications}/>
       </TabPanel>
       
 

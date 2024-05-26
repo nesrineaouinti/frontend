@@ -15,6 +15,7 @@ import CreateJob from '../EditProfiles/CreateJob';
 import AllCandidates from '../BestAllCandidates/AllCandidats';
 
 
+
 export default function DashboardPage() {
     return (
         <Box sx={{ display: 'flex', minHeight: '100vh' }}>

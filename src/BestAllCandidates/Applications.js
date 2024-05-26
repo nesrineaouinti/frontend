@@ -1,3 +1,5 @@
+
+
 import {React,useState,useEffect} from "react";
 import { CssVarsProvider } from "@mui/joy/styles";
 import CssBaseline from "@mui/joy/CssBaseline";
@@ -198,7 +200,7 @@ axiosInstance.patch(`applications/${appId}/`,{status:status})
         </Button>
         
      
-      <Modal open={!!variant} onClose={() => setVariant(undefined)}>
+      <Modal open={!!variant} onClose={() => setVariant(undefined)} sx={{pl:{xs:0,md:160,lg:210}}}  >
         <ModalDialog variant={variant} sx={{width:'600px'}}>
           <ModalClose />
           <DialogTitle>Job Application</DialogTitle>
@@ -213,9 +215,9 @@ axiosInstance.patch(`applications/${appId}/`,{status:status})
   <Divider />
   <Stack direction='row' justifyContent='space-between'>
  
-  <Button  sx={{px:10}} size='lg' color="danger" 
+  <Button  sx={{px:{xs:5,sm:10}}} size='lg' color="danger" 
   onClick={() => handleStatusChange('rejected',currentAppId)}>Reject</Button> 
-   <Button sx={{px:10}} size='lg' color="success" 
+   <Button sx={{px:{xs:5,sm:10}}} size='lg' color="success" 
   onClick={() => handleStatusChange('accepted',currentAppId)}>Accept</Button>
   </Stack>
             

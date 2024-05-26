@@ -29,7 +29,7 @@ function Copyright(props) {
     >
       {"Copyright © "}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        3D SMART FACTORY
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
