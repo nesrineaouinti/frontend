@@ -13,6 +13,7 @@ import ViewDetails from '../BestAllCandidates/ViewDetails';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import CreateJob from '../EditProfiles/CreateJob';
 import AllCandidates from '../BestAllCandidates/AllCandidats';
+import Dashboard from './Dashboard';
 
 
 
@@ -25,6 +26,7 @@ export default function DashboardPage() {
 
                  {/*TODO <Route path="statistic" element={<Statistic />} /> */}
                  {/*TODO <Route path="contactus" element={<Contactus />} /> */}
+                <Route path="" element={<Dashboard />} />
                 <Route path="jobs" element={<JobsTableTest />} />
                 <Route path="editjob/:jobId" element={<EditJob />} />
                 <Route path="viewdetails/:jobId" element={<ViewDetails />} />

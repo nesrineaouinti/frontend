@@ -173,6 +173,7 @@ export default function Sidebar() {
           }}
         >
           <ListItem>
+          <Link to="/dashboard" style={{ textDecoration: 'none', color: 'inherit', width:'100%'}}>
             <ListItemButton selected={index === 1}
             onClick={() => setIndex(1)}>
               <HomeRoundedIcon />
@@ -180,6 +181,7 @@ export default function Sidebar() {
                 <Typography level="title-sm">Dashboard</Typography>
               </ListItemContent>
             </ListItemButton>
+            </Link>
           </ListItem>
           
           <ListItem>
