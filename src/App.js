@@ -36,7 +36,7 @@ import { useNavigate } from 'react-router-dom';
 import EditJob from './EditProfiles/EditJob';
 import PromotedJobs from './Components/PromotedJobs';
 import AllJobs from './pages/AllJobs';
-
+import ProtectedRoute from './ProtectedRoute/ProtectedRoute';
 
 import './App.css';
 import { Typography } from '@mui/material';
@@ -76,6 +76,17 @@ function Logout() {
 
   return null; // or a loading spinner until logged out
 }
+// function DjangoAdminPanel() {
+//   return (
+//       <iframe 
+//           src="http://127.0.0.1:8000/admin"  // Adjust this URL based on your Django server
+//           style={{ width: '100%', height: '800px', border: 'none' }}
+//           title="Django Admin Panel"
+//       />
+//   );
+// }
+// <Route path='/admin' element={<DjangoAdminPanel/> } />
+
 
 function App() {
     return (
@@ -92,7 +103,9 @@ function App() {
                 <Route path="/myspace" element={<MySpace />} />
                 <Route path="/logout" element={<Logout />} />
                 <Route path="/profile" element={<EditProfile />} />
-                <Route path="/dashboard/*" element={<DashboardPage />} /> 
+                <Route element={<ProtectedRoute />}>
+                    <Route path="/dashboard/*" element={<DashboardPage />} />
+                </Route>
                 <Route path="/resetpassword" element={<ResetPassPage/>} />
                 <Route path="/jobs" element={<AllJobs/>} />
 

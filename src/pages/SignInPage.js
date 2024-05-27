@@ -17,7 +17,7 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
-
+import {jwtDecode} from 'jwt-decode';
 import axiosInstance from '../axios';
 import { useNavigate } from 'react-router-dom';
 //added 
@@ -70,11 +70,11 @@ const defaultTheme = createTheme();
 
 
 const SignInPage = () => {
-  if (localStorage.getItem('access_token')) {
-    //if he is already signed in and tries to access /signin Redirect the user to another page, for example, the home page  //for register as well we can do that , but for register we did local.clear() anyway when he register
-    window.location.href = '/'; // Replace '/home' with your desired destination
+//   if (localStorage.getItem('access_token')) {
+//     //if he is already signed in and tries to access /signin Redirect the user to another page, for example, the home page  //for register as well we can do that , but for register we did local.clear() anyway when he register
+//     window.location.href = '/'; // Replace '/home' with your desired destination
     
-}
+// }
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -85,154 +85,77 @@ const SignInPage = () => {
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
 
-    if (!email) {
-        setEmailError("Please enter your email");
-        return;
-    } else if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
-        setEmailError("Please enter a valid email");
-        return;
-    }
+//     if (!email) {
+//         setEmailError("Please enter your email");
+//         return;
+//     } else if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
+//         setEmailError("Please enter a valid email");
+//         return;
+//     }
 
-    if (!password) {
-        setPasswordError("Please enter your password");
-        return;
-    }
+//     if (!password) {
+//         setPasswordError("Please enter your password");
+//         return;
+//     }
     
-    axiosInstance.post(`token/`, { email, password })
-        .then((res) => {
+//     axiosInstance.post(`token/`, { email, password })
+//         .then((res) => {
             
-            localStorage.setItem('access_token', res.data.access);
-            localStorage.setItem('refresh_token', res.data.refresh);
-            axiosInstance.defaults.headers['Authorization'] = 'JWT ' + res.data.access;
-            alert("login successful!")
-            navigate('/');
-        })
-        .catch((err) => {
-            console.error('Error during authentication', err);
-            alert("error")
-            // You might want to handle the error visually for the user here as well
-        });
+//             localStorage.setItem('access_token', res.data.access);
+//             localStorage.setItem('refresh_token', res.data.refresh);
+//             axiosInstance.defaults.headers['Authorization'] = 'JWT ' + res.data.access;
+//             alert("login successful!")
+//             navigate('/');
+//         })
+//         .catch((err) => {
+//             console.error('Error during authentication', err);
+//             alert("error")
+//             // You might want to handle the error visually for the user here as well
+//         });
+// };
+const handleSubmit = (e) => {
+  e.preventDefault();
+
+  if (!email) {
+      setEmailError("Please enter your email");
+      return;
+  } else if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
+      setEmailError("Please enter a valid email");
+      return;
+  }
+
+  if (!password) {
+      setPasswordError("Please enter your password");
+      return;
+  }
+
+  axiosInstance.post(`token/`, { email, password })
+      .then((res) => {
+          localStorage.setItem('access_token', res.data.access);
+          localStorage.setItem('refresh_token', res.data.refresh);
+          axiosInstance.defaults.headers['Authorization'] = 'JWT ' + res.data.access;
+
+          const decoded = jwtDecode(res.data.access); // Decode the JWT token to check is_staff
+          if (decoded.is_staff) {
+              alert("Admin login successful!");
+              navigate('/dashboard'); // Redirect to the dashboard for admins
+          } else {
+              alert("User login successful!");
+              navigate('/'); // Redirect to the home page or user-specific page
+          }
+      })
+      .catch((err) => {
+          console.error('Error during authentication', err);
+          alert("Email or password incorrect!");
+          // Additional user error handling can be added here
+      });
 };
 
-// const handleSubmit = (e) => {
-  
-//   e.preventDefault();
-
-//   if (!email) {
-//       setEmailError("Please enter your email");
-//       return;
-//   } else if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
-//       setEmailError("Please enter a valid email");
-//       return;
-//   }
-
-//   if (!password) {
-//       setPasswordError("Please enter your password");
-//       return;
-//   }
-  
-//   axiosInstance.post(`token/`, { email, password })
-//       .then((res) => {
-        
-          
-//           setAccessToken(res.data.access);
-//           setRefreshToken( res.data.refresh);
-          
-//           //jawo behy logged in succ , taw we check his role 
-//           checkUserRoleAndNavigate();
-         
-//       })
-//       .catch((err) => {
-//           console.error('Error during authentication', err);
-//           alert("Email or password incorrect")
-          
-//       });
-
-//       const checkUserRoleAndNavigate = () => {
-//          //we set the default header of the request , so user can send requests with his access token saved to his request
-//         axiosInstance.get(`checkifadmin/` , {
-//           headers: {
-//               'Authorization': `JWT ${accessToken}`
-//           }
-//       })  // we will check the role from the sent access token 
-//             .then((res) => {
-                 
-//                 if ((res.data)) {
-//                   console.log(res.data)
-//                   alert("login successful as Admin!")
-//                   axiosInstance.defaults.headers['Authorization'] = 'JWT ' + accessToken; //we set the default header of the request , so user can send requests with his access token saved to his request
-
-//                     navigate('/dashboard');
-//                 } else {
-//                   alert("login successful! as candidat")
-//                     navigate('/');
-//                 }
-//             })
-            
-//             .catch((err) => {
-//                 console.error('Error fetching user role', err);
-//                 alert('Error identifying user type')
-                 
-//             });
 
 
-
-
-// };}
-
-// const handleSubmit = async (e) => {
-//   e.preventDefault();
-
-//   if (!email) {
-//       setEmailError("Please enter your email");
-//       return;
-//   } else if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
-//       setEmailError("Please enter a valid email");
-//       return;
-//   }
-
-//   if (!password) {
-//       setPasswordError("Please enter your password");
-//       return;
-//   }
-
-//   try {
-//       const tokenResponse = await axiosInstance.post(`token/`, { email, password });
-//       const accessToken = tokenResponse.data.access;
-//       const refreshToken = tokenResponse.data.refresh;
-
-//       setAccessToken(accessToken);
-//       setRefreshToken(refreshToken);
-      
-//       axiosInstance.defaults.headers['Authorization'] = `JWT ${accessToken}`;
-
-//       await checkUserRoleAndNavigate(accessToken);
-//   } catch (err) {
-//       console.error('Error during authentication', err);
-//       alert("Email or password incorrect");
-//   }
-// };
-
-// const checkUserRoleAndNavigate = async (accessToken) => {
-//   try {
-//       const roleResponse = await axiosInstance.get(`checkifadmin/`
-//         );
-//       if (!roleResponse.data) {
-//         console.log(roleResponse.data);
-//           alert("Login successful as Admin!");
-//           navigate('/dashboard');
-//       } else {
-//           alert("Login successful as Candidate!");
-//           navigate('/');
-//       }
-//   } catch (err) {
-//       console.error('Error fetching user role', err);
-//       alert('Error identifying user type');
-//   }
-// };
 
 
 
