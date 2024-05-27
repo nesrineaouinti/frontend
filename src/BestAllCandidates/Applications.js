@@ -26,6 +26,7 @@ import AccordionSummary, {
   accordionSummaryClasses,
 } from "@mui/joy/AccordionSummary";
 import { Stack } from "@mui/material";
+import { toast } from "react-toastify";
 
 function formatDate(dateTimeStr) {
   const date = new Date(dateTimeStr);
@@ -54,11 +55,11 @@ export default function Applicationss({ data }) {
           return app;
         });
         setApplications(updatedApplications); // Update the state with the modified applications array
-        alert(`Success! updated to: ${status}`);
+        toast.success(`Success! updated to: ${status}`);
         setVariant(undefined); // Close the modal
       })
       .catch((error) => {
-        alert("error updating");
+        toast.error("error updating");
       });
   };
 

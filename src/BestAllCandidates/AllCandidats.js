@@ -23,8 +23,6 @@ const [applications, setApplications]=React.useState([])
         .then(response => {
           setApplications(response.data);
             
-           
-            
         })
         .catch(error => {
             console.error('Error fetching data: ', error);
