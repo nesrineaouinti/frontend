@@ -17,7 +17,8 @@ import { useState, useEffect } from "react";
 import { Stack } from "@mui/material";
 import { useNavigate, useParams } from 'react-router-dom';
 import axiosInstance from "../axios";
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 export default function CodeSignUp(){
@@ -36,13 +37,13 @@ const handleSubmitCode=(e)=>{
     code: code,
   })
   .then((res) => {
-    alert("Account confirmed successfully.");
+    toast.success("Account confirmed successfully.");
     
     navigate('/signin');
   })
   .catch((error) => {
     console.error("Confirmation failed:", error);
-    alert("Invalid confirmation code. Please try again.");
+    toast.error("Invalid confirmation code. Please try again.");
   }); }
 
 
@@ -60,11 +61,11 @@ return (
             <Button    sx={{p:0.1}} onClick={()=>{
               axiosInstance.post(`user/sendcode/${email}/`)
               .then((res) => {
-                alert("code sent successfully , check your email")
+                toast.success("code sent successfully , check your email")
             })
               .catch((error) => {
                 console.error( error);
-                alert("error sending code");
+                toast.error("error sending code");
               }); 
 
             

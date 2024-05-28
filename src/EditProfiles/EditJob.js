@@ -24,7 +24,8 @@ import axiosInstance from "../axios";
 import { Title } from "@mui/icons-material";
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 
@@ -95,7 +96,7 @@ export default function EditJob() {
   const handleSubmit = () => {
     const { title, salary, summary, skills, description } = jobData;
     if (!title || !salary || !summary || !skills.length || !description) {
-      alert("Please fill the whole form");
+      toast.warning("Please fill the whole form");
     } else {
       axiosInstance.patch(`jobs/${jobId}/update/`, {
         title,
@@ -105,14 +106,14 @@ export default function EditJob() {
         description
       })
         .then(response => {
-          alert("Update successful!");
+          toast.success("Update successful!");
           navigate(-1);
          
           
         })
         .catch(error => {
           console.error("Update failed:", error);
-          alert('Update failed');
+          toast.error('Update failed');
         });
     }
   };

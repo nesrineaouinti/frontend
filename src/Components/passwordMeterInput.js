@@ -9,6 +9,8 @@ import Button from "@mui/joy/Button";
 import Box from "@mui/joy/Box";
 import { useNavigate, useParams } from "react-router-dom";
 import axiosInstance from "../axios";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const PasswordMeterInput = ({ email }) => {
   const [value, setValue] = React.useState(""); //c le password
@@ -19,11 +21,11 @@ const PasswordMeterInput = ({ email }) => {
     axiosInstance
       .post("user/changepassword/", { email: email, new_password: value })
       .then((res) => {
-        alert("password updated successfully!");
+        toast.success("password updated successfully!");
         navigate("/signin");
       })
       .catch((error) => {
-        alert("error updating your password");
+        toast.error("error updating your password");
       });
   };
 

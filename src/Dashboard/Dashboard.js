@@ -35,7 +35,7 @@ const Dashboard = () => {
       </Box>
 
       <Grid container spacing={2}>
-        <Grid item xs={3}>
+        <Grid item xs={12} sm={6} md={3} lg={3}>
           <Box
             sx={{
               display: "flex",
@@ -58,7 +58,7 @@ const Dashboard = () => {
             </Typography>
           </Box>
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={12} sm={6} md={3} lg={3} >
         <Box
             sx={{
               display: "flex",
@@ -81,7 +81,7 @@ const Dashboard = () => {
             </Typography>
           </Box>
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={12} sm={6} md={3} lg={3}>
         <Box
             sx={{
               display: "flex",
@@ -104,7 +104,7 @@ const Dashboard = () => {
             </Typography>
           </Box>
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={12} sm={6} md={3} lg={3}>
         <Box
             sx={{
               display: "flex",
@@ -128,10 +128,10 @@ const Dashboard = () => {
           </Box>
         </Grid>
 
-        <Grid item xs={8}>
+        <Grid item xs={12} sm={6} md={8} lg={8}>
           <ChartComponent  />
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={12} sm={6} md={4} lg={4}>
           <DoughnutChart />
         </Grid>
       </Grid>

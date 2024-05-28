@@ -8,20 +8,35 @@ import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import axiosInstance from "../axios";
-
-
-const handleSubmit =()=>{
-  /*axiosInstance
-        .post(`applications/`, {
-          cover_letter:'fdfdfd' ,
-          job_id:14,
-
-          
-        })*/
-
-}
+import { toast } from "react-toastify";
 
 export default function Hero() {
+  const [email, setEmail] = React.useState("");
+
+  const handleSubmit = () => {
+    if (email === "") {
+      toast.warning("please fill the whole form");
+    } else {
+      axiosInstance
+        .post(`contact/create/`, {
+          name: "",
+          email: email,
+          message: "assist me",
+        })
+        .then((res) => {
+          console.log(res);
+          console.log(res.data);
+          toast.success("Message send sucessuflly!");
+          setEmail("")
+          //navigate('/');
+        })
+        .catch((error) => {
+          console.error("Creation failed:", error);
+          toast.error("creation failed");
+        });
+    }
+  };
+
   return (
     <Box
       id="hero"
@@ -44,15 +59,20 @@ export default function Hero() {
           pb: { xs: 8, sm: 10 },
         }}
       >
-        <Stack spacing={2} useFlexGap  sx={{ width: { xs: "100%", sm: "80%" , md:"80%", lg:"90%" } }}>
+        <Stack
+          spacing={2}
+          useFlexGap
+          sx={{ width: { xs: "100%", sm: "80%", md: "80%", lg: "90%" } }}
+        >
           <Typography
             variant="h1"
-            sx={ {  pr:{lg:7},
+            sx={{
+              pr: { lg: 7 },
               display: "flex",
               flexDirection: { xs: "column", md: "row" },
               alignSelf: "center",
               textAlign: "center",
-              
+
               fontSize: "clamp(3.5rem, 10vw, 4rem)",
             }}
           >
@@ -72,13 +92,13 @@ export default function Hero() {
             </Typography>
           </Typography>
           <Typography
-            
             textAlign="center"
             color="text.secondary"
             sx={{ alignSelf: "center", width: { sm: "100%", md: "80%" } }}
           >
-            Welcome to 3D SMART FACTORY, your gateway to career advancement. 
-            Join us to unlock your potential and achieve your professional dreams.
+            Welcome to 3D SMART FACTORY, your gateway to career advancement.
+            Join us to unlock your potential and achieve your professional
+            dreams.
           </Typography>
           <Stack
             direction={{ xs: "column", sm: "row" }}
@@ -94,6 +114,10 @@ export default function Hero() {
               variant="outlined"
               aria-label="Enter your email address"
               placeholder="Your email address"
+              value={email}
+              onChange={(ev) => {
+                setEmail(ev.target.value);
+              }}
               inputProps={{
                 autocomplete: "off",
                 ariaLabel: "Enter your email address",

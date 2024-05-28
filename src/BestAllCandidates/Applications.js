@@ -4,21 +4,17 @@ import CssBaseline from "@mui/joy/CssBaseline";
 import Avatar from "@mui/joy/Avatar";
 import List from "@mui/joy/List";
 import Sheet from "@mui/joy/Sheet";
-
 import OpenInNew from "@mui/icons-material/OpenInNew";
 import AccordionGroup from "@mui/joy/AccordionGroup";
 import Accordion from "@mui/joy/Accordion";
 import axiosInstance from "../axios";
 import Button from "@mui/joy/Button";
 import { Box, Chip, Divider, Typography } from "@mui/joy";
-
 import Modal from "@mui/joy/Modal";
 import ModalClose from "@mui/joy/ModalClose";
 import ModalDialog from "@mui/joy/ModalDialog";
 import DialogTitle from "@mui/joy/DialogTitle";
 import DialogContent from "@mui/joy/DialogContent";
-import Textarea from "@mui/joy/Textarea";
-
 import AccordionDetails, {
   accordionDetailsClasses,
 } from "@mui/joy/AccordionDetails";
@@ -26,6 +22,8 @@ import AccordionSummary, {
   accordionSummaryClasses,
 } from "@mui/joy/AccordionSummary";
 import { Stack } from "@mui/material";
+import { toast } from "react-toastify";
+import PdfViewer from "./pfeReader";
 
 function formatDate(dateTimeStr) {
   const date = new Date(dateTimeStr);
@@ -41,6 +39,8 @@ export default function Applicationss({ data }) {
   }, [data]);
 
   const [currentAppId, setCurrentAppId] = useState(null);
+  const [currentAppCV, setCurrentAppCV] = useState(null);
+  
   const handleStatusChange = (status, appId) => {
     console.log(status, appId);
     axiosInstance
@@ -54,11 +54,11 @@ export default function Applicationss({ data }) {
           return app;
         });
         setApplications(updatedApplications); // Update the state with the modified applications array
-        alert(`Success! updated to: ${status}`);
+        toast.success(`Success! updated to: ${status}`);
         setVariant(undefined); // Close the modal
       })
       .catch((error) => {
-        alert("error updating");
+        toast.error("error updating");
       });
   };
 
@@ -172,57 +172,57 @@ export default function Applicationss({ data }) {
                 onClick={() => {
                   setVariant("soft");
                   setCurrentAppId(app.id); // Store the current application ID when opening the modal
+                  setCurrentAppCV(app.cv);
                 }}
               >
                 CV
               </Button>
-
-              <Modal
-                open={!!variant}
-                onClose={() => setVariant(undefined)}
-                sx={{ pl: { xs: 0, md: 160, lg: 210 } }}
-              >
-                <ModalDialog variant={variant} sx={{ width: "600px" }}>
-                  <ModalClose />
-                  <DialogTitle>Job Application</DialogTitle>
-                  <DialogContent>
-                    <Textarea
-                      color="primary"
-                      sx={{ height: 450 }}
-                      name="Soft"
-                      placeholder="IMG CV"
-                      variant="palin"
-                    />
-
-                    <Divider />
-                    <Stack direction="row" justifyContent="space-between">
-                      <Button
-                        sx={{ px: { xs: 5, sm: 10 } }}
-                        size="lg"
-                        color="danger"
-                        onClick={() =>
-                          handleStatusChange("rejected", currentAppId)
-                        }
-                      >
-                        Reject
-                      </Button>
-                      <Button
-                        sx={{ px: { xs: 5, sm: 10 } }}
-                        size="lg"
-                        color="success"
-                        onClick={() =>
-                          handleStatusChange("accepted", currentAppId)
-                        }
-                      >
-                        Accept
-                      </Button>
-                    </Stack>
-                  </DialogContent>
-                </ModalDialog>
-              </Modal>
             </Box>
           </Sheet>
         ))}
+        <Modal
+          open={!!variant}
+          onClose={() => setVariant(undefined)}
+          sx={{ pl: { xs: 0, md: 160, lg: 210 } }}
+        >
+          <ModalDialog variant={variant} sx={{ width: "600px" }}>
+            <ModalClose />
+            <DialogTitle>Job Application</DialogTitle>
+            <DialogContent>
+              {currentAppCV && (
+                <PdfViewer
+                  file={
+                    currentAppCV
+                      ? currentAppCV
+                      : "https://arxiv.org/pdf/quant-ph/0410100.pdf"
+                  }
+                />
+              )}
+              {!currentAppCV && (
+                <Typography variant="h3"> No Cv uploaded</Typography>
+              )}
+              <Divider />
+              <Stack direction="row" justifyContent="space-between">
+                <Button
+                  sx={{ px: { xs: 5, sm: 10 } }}
+                  size="lg"
+                  color="danger"
+                  onClick={() => handleStatusChange("rejected", currentAppId)}
+                >
+                  Reject
+                </Button>
+                <Button
+                  sx={{ px: { xs: 5, sm: 10 } }}
+                  size="lg"
+                  color="success"
+                  onClick={() => handleStatusChange("accepted", currentAppId)}
+                >
+                  Accept
+                </Button>
+              </Stack>
+            </DialogContent>
+          </ModalDialog>
+        </Modal>
       </List>
     </CssVarsProvider>
   );

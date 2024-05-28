@@ -23,6 +23,8 @@ import FlipCameraIosOutlinedIcon from "@mui/icons-material/FlipCameraIosOutlined
 import axiosInstance from "../axios";
 import { Title } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const skillsList = [
   { name: "Design" },
@@ -61,7 +63,7 @@ export default function CreateJob() {
       skills === "" ||
       description === ""
     ) {
-      alert("please fill the whole form");
+      toast.warning("please fill the whole form");
     } else {
       console.log(title, salary, summary, skills);
       axiosInstance
@@ -75,12 +77,12 @@ export default function CreateJob() {
         .then((res) => {
           console.log(res);
           console.log(res.data);
-          alert("Registration successful!");
+          toast.success("Registration successful!");
           //navigate('/');
         })
         .catch((error) => {
           console.error("Creation failed:", error);
-          alert("creation failed");
+          toast.error("creation failed");
         });
     }
   };

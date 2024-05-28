@@ -14,8 +14,9 @@ import EditIcon from "@mui/icons-material/Edit";
 import IconButton from "@mui/material/IconButton";
 import axiosInstance from "../axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
-
+import "react-toastify/dist/ReactToastify.css";
 
 
 const defaultTheme = createTheme();
@@ -106,14 +107,14 @@ export default function EditProfile() {
 
       axiosInstance.patch('user/update/', updatedFields)
       .then((res) => {
-          alert('Updated successfully!');
+          toast.success('Updated successfully!');
           // Optionally reset password fields here
           setPassword("");
           setPasswordTouched(false);
       })
       .catch((error) => {
           console.error('Update failed:', error);
-          alert(`Update failed: ${error.response ? error.response.data.detail : 'Server error'}`);
+          toast.error(`Update failed: ${error.response ? error.response.data.detail : 'Server error'}`);
       });
   }
 };

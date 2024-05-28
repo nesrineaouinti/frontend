@@ -12,6 +12,8 @@ import FacebookIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/X";
 import { Divider } from "@mui/material";
+import { toast } from "react-toastify";
+import axiosInstance from "../axios";
 
 const logoStyle = {
   width: "110px",
@@ -30,6 +32,33 @@ function Copyright() {
 }
 
 export default function Footer() {
+
+  const [email, setEmail] = React.useState("");
+
+  const handleSubmit = () => {
+    if (email === "") {
+      toast.warning("please fill the whole form");
+    } else {
+      axiosInstance
+        .post(`contact/create/`, {
+          name: "",
+          email: email,
+          message: "assist me",
+        })
+        .then((res) => {
+          console.log(res);
+          console.log(res.data);
+          toast.success("Message send sucessuflly!");
+          setEmail("")
+          //navigate('/');
+        })
+        .catch((error) => {
+          console.error("Creation failed:", error);
+          toast.error("creation failed");
+        });
+    }
+  };
+
   return (
     <div>
     <Divider/>
@@ -86,8 +115,13 @@ export default function Footer() {
                   autocomplete: "off",
                   ariaLabel: "Enter your email address",
                 }}
+                value={email}
+                onChange={(ev) => {
+                  setEmail(ev.target.value);
+                }}
               />
               <Button
+              onClick={handleSubmit}
                 variant="contained"
                 color="primary"
                 sx={{ flexShrink: 0 }}
