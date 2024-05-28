@@ -94,7 +94,7 @@ export default function Applicationss({ data }) {
                 />
                 <div>
                   <Typography level="title-md">
-                    {app.candidate.first_name} {app.candidate.last_name}
+                    {app.candidate_first_name} {app.candidate_last_name}
                   </Typography>
                   <Typography level="body-xs">
                     {app.candidate_details}

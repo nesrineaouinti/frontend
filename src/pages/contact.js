@@ -78,8 +78,7 @@ const Contact = () => {
               fontWeight: 250,
             }}
           >
-            Find more than 500 job vacancies of your dreams, from startup
-            companies, unions, to bonafides.
+            Got a question? Need assistance with our services or have feedback? Don’t hesitate to reach out. Our team is dedicated to providing you with the support you need.
           </Typography>
         </Box>
 
