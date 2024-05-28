@@ -20,6 +20,8 @@ import FormLabel from "@mui/material/FormLabel";
 import {jwtDecode} from 'jwt-decode';
 import axiosInstance from '../axios';
 import { useNavigate } from 'react-router-dom';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 //added 
 
 
@@ -140,16 +142,16 @@ const handleSubmit = (e) => {
 
           const decoded = jwtDecode(res.data.access); // Decode the JWT token to check is_staff
           if (decoded.is_staff) {
-              alert("Admin login successful!");
+              toast.success("Admin login successful!");
               navigate('/dashboard'); // Redirect to the dashboard for admins
           } else {
-              alert("User login successful!");
+            toast.success("User login successful!");
               navigate('/'); // Redirect to the home page or user-specific page
           }
       })
       .catch((err) => {
           console.error('Error during authentication', err);
-          alert("Email or password incorrect!");
+          toast.error("Email or password incorrect!");
           // Additional user error handling can be added here
       });
 };

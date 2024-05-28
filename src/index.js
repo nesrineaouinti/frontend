@@ -3,7 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
-
+import { toast ,ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -40,7 +40,9 @@ root.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <App />
+      
     </ThemeProvider>
+    <ToastContainer />
   </React.StrictMode>
 );
 

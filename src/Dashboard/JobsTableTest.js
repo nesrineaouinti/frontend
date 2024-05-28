@@ -31,6 +31,8 @@ import axiosInstance from "../axios";
 import Switch from "@mui/joy/Switch";
 import { useNavigate } from "react-router-dom";
 import CssBaseline from "@mui/material/CssBaseline";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function formatDate(dateTimeStr) {
   const date = new Date(dateTimeStr);
@@ -151,10 +153,10 @@ export default function JobsTableTest({ onEditJob, onViewDetails }) {
         .delete(`jobs/${jobId}/delete/`)
         .then((response) => {
           setJobs((prevJobs) => prevJobs.filter((job) => job.id !== jobId)); //update the disaplyed jobs without reloading the server
-          alert("Job deleted successfully");
+          toast.success("Job deleted successfully");
         })
         .catch((error) => {
-          alert("Error deleting job");
+          toast.error("Error deleting job");
         });
     }
   };
@@ -170,10 +172,10 @@ export default function JobsTableTest({ onEditJob, onViewDetails }) {
             job.id === jobId ? { ...job, promote: true } : job
           )
         );
-        alert(`Success! Promoted: ${promoteStatus}`);
+        toast.success(`Success! Promoted: ${promoteStatus}`);
       })
       .catch((error) => {
-        alert("Error promoting job");
+        toast.error("Error promoting job");
       });
   };
 

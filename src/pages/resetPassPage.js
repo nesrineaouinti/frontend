@@ -10,6 +10,8 @@ import { useNavigate } from "react-router-dom";
 
 import axiosInstance from "../axios";
 import PasswordMeterInput from "../Components/passwordMeterInput";
+import { toast ,ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ResetPassPage = (props) => {
   const navigate = useNavigate();
@@ -33,11 +35,11 @@ const ResetPassPage = (props) => {
       .post(`user/sendcode/${email}/`)
 
       .then((res) => {
-        alert("code sent successfully , check your email");
+        toast.success("code sent successfully , check your email");
       })
       .catch((error) => {
         console.error(error);
-        alert("error sending code");
+        toast.error("error sending code");
       });
   };
 
@@ -51,13 +53,13 @@ const ResetPassPage = (props) => {
       })
 
       .then((res) => {
-        alert("Code verified successfully");
+        toast.success("Code verified successfully");
 
         setIsVerified(true); //this will show us the component to enter our new password
       })
       .catch((error) => {
         console.error(error);
-        alert("Invalid email or code.");
+        toast.error("Invalid email or code.");
       });
   };
 
