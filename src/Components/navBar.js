@@ -148,7 +148,7 @@ export default function NavBar() {
                   </Typography>
                 </MenuItem>
                 <MenuItem
-                  onClick={() => scrollToSection("contactus")}
+                  onClick={() => scrollToSection("contact")}
                   sx={{ py: "6px", px: "12px" }}
                 >
                   <Typography variant="body2" color="text.primary">
@@ -302,7 +302,7 @@ export default function NavBar() {
                   <MenuItem onClick={() => scrollToSection("Featured")}>
                   Featured
                   </MenuItem>
-                  <MenuItem onClick={() => scrollToSection("contactus")}>
+                  <MenuItem onClick={() => scrollToSection("contact")}>
                     Contact Us
                   </MenuItem>
                   
