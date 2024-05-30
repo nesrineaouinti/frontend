@@ -3,7 +3,7 @@ import Sidebar from './sidebar';
 import Header from './Header';
 import { Box } from '@mui/material';
 import Layout from '../BestAllCandidates/ViewDetails';
-import SignUpPage from '../pages/SignUpPage';
+
 import JobsTableTest from './JobsTableTest';
 import EditProfile from '../EditProfiles/EditProfile';
 import Applicationss from '../BestAllCandidates/Applications';
@@ -26,8 +26,7 @@ export default function DashboardPage() {
             <Header />
             <Routes>
 
-                 {/*TODO <Route path="statistic" element={<Statistic />} /> */}
-                 {/*TODO <Route path="contactus" element={<Contactus />} /> */}
+                 
                 <Route path="" element={<Dashboard />} />
                 <Route path="jobs" element={<JobsTableTest />} />
                 <Route path="editjob/:jobId" element={<EditJob />} />

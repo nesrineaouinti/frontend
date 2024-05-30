@@ -58,38 +58,33 @@ if (!jobs) {
              
 {jobs.map((job) => (
     <Card key={job.id}>
-      <CardContent align='left'>
-        <Typography sx={{fontSize:24 , color:'#1E1E1E',fontWeight:450}}>{job.title}</Typography>
+      <CardContent align='left' style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '86%' }}>
+        <div>
+          <Typography sx={{ fontSize: 24, color: '#1E1E1E', fontWeight: 450 }}>{job.title}</Typography>
+          <Stack direction='row' justifyContent='space-between'>
+            <Stack direction="row" spacing={1} paddingBottom={3}> 
+              {job.skills.split(',').map((skill) => (
+                <Chip variant='outlined' label={skill} color="warning" size="small" />
+              ))}
+            </Stack>
+            <Typography style={{ fontSize: 16 }} >{formatDate(job.created_at)}</Typography>
+          </Stack>
+          <Typography style={{ color: '#A9B4CD', fontSize: 16 }} >{job.summary}</Typography>
+        </div>
 
-<Stack direction='row' justifyContent='space-between'>
-        <Stack direction="row" spacing={1} paddingBottom={3}> 
-          {job.skills.split(',').map((skill)=> (
-          <Chip variant='outlined' label={skill} color="warning" size="small" />))}
+        <Stack paddingTop={5}
+          direction="row"
+          alignItems="center"
+          justifyContent='space-between'
           
+        >
+          <Typography color='primary.main' style={{ fontSize: 20 }}>{job.salary}$ <span style={{ color: '#1E1E1E', fontSize: 14 }}>/month</span></Typography>
+          <Button size='medium' variant='outlined' onClick={()=>{  navigate(`/jobdetails/${job.id}`)}} >Apply Now</Button>
         </Stack>
-        <Typography style={{fontSize:16}} >{formatDate(job.created_at)}</Typography>
-        </Stack>
-
-        <Typography style={{color:'#A9B4CD' ,fontSize:16 }} >{job.summary}</Typography>
-      
-
-
-      <Stack paddingTop={5}
-        direction="row"
-        alignItems="center"
-        justifyContent='space-between'
-
-      >
-        <Typography color='primary.main' style={{ fontSize:20}}>{job.salary}$ <span style={{color:'#1E1E1E', fontSize:14}}>/month</span></Typography>
-        <Button size='meduim' variant='outlined' onClick={()=>{  navigate(`/jobdetails/${job.id}`)}} >Apply Now</Button>
-        
-
-
-
-        
-      </Stack>
       </CardContent>
-    </Card> ))} 
+    </Card>
+))}
+
     
     </List>
   );

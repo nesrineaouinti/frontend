@@ -26,27 +26,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 
 
-const RadioGrp = ({ userType, setUserType }) => {
-  const handleChange = (event) => {
-    setUserType(event.target.value);
-  };
 
-  return (
-    <FormControl>
-      <FormLabel id="demo-controlled-radio-buttons-group">You are:</FormLabel>
-      <RadioGroup
-        row
-        aria-labelledby="demo-controlled-radio-buttons-group"
-        name="controlled-radio-buttons-group"
-        value={userType}
-        onChange={handleChange}
-      >
-        <FormControlLabel value="candidat" control={<Radio />} label="Candidat" />
-        <FormControlLabel value="admin" control={<Radio />} label="Admin" />
-      </RadioGroup>
-    </FormControl>
-  );
-};
 
 function Copyright(props) {
   return (
@@ -66,7 +46,7 @@ function Copyright(props) {
   );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
+
 
 const defaultTheme = createTheme();
 
@@ -81,43 +61,11 @@ const SignInPage = () => {
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const [userType, setUserType] = useState("candidat"); // Added state for radio group
-  const [accessToken,setAccessToken] = useState("")
-  const [refreshToken,setRefreshToken] = useState("")
+ 
 
   const navigate = useNavigate();
 
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
 
-//     if (!email) {
-//         setEmailError("Please enter your email");
-//         return;
-//     } else if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
-//         setEmailError("Please enter a valid email");
-//         return;
-//     }
-
-//     if (!password) {
-//         setPasswordError("Please enter your password");
-//         return;
-//     }
-    
-//     axiosInstance.post(`token/`, { email, password })
-//         .then((res) => {
-            
-//             localStorage.setItem('access_token', res.data.access);
-//             localStorage.setItem('refresh_token', res.data.refresh);
-//             axiosInstance.defaults.headers['Authorization'] = 'JWT ' + res.data.access;
-//             alert("login successful!")
-//             navigate('/');
-//         })
-//         .catch((err) => {
-//             console.error('Error during authentication', err);
-//             alert("error")
-//             // You might want to handle the error visually for the user here as well
-//         });
-// };
 const handleSubmit = (e) => {
   e.preventDefault();
 
@@ -183,7 +131,7 @@ const handleSubmit = (e) => {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs" >
         <CssBaseline />
         <Box
           sx={{
@@ -200,7 +148,7 @@ const handleSubmit = (e) => {
             Sign in
           </Typography>
           <Box component="form" noValidate sx={{ mt: 1 }}>
-          <RadioGrp userType={userType} setUserType={setUserType} />
+          
             <TextField
               value={email}
               margin="normal"
@@ -238,10 +186,7 @@ const handleSubmit = (e) => {
                 setPasswordError("");
               }}
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
+            
             <Button
               fullWidth
               variant="contained"
