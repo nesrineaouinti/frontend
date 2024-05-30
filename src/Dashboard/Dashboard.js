@@ -4,6 +4,8 @@ import DoughnutChart from "./donghatChart";
 import { CssVarsProvider } from "@mui/joy";
 import { useEffect, useState } from "react";
 import axiosInstance from "../axios";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 const Dashboard = () => {
   const [dataDash , setData]= useState()
@@ -136,7 +138,7 @@ const Dashboard = () => {
         </Grid>
       </Grid>
       </Box>
- 
+ <ToastContainer />
     </>
   );
 };

@@ -14,6 +14,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import CreateJob from '../EditProfiles/CreateJob';
 import AllCandidates from '../BestAllCandidates/AllCandidats';
 import Dashboard from './Dashboard';
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 
 
@@ -35,6 +37,7 @@ export default function DashboardPage() {
                 <Route path="allapplications" element={<AllCandidates />} />
 
             </Routes>
+            <ToastContainer />
         </Box>
     );
 }

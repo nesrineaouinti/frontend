@@ -10,7 +10,8 @@ import ExploreJobs from "../Components/exploreJobs";
 import Dabox from "../StatusTracker/MySpace";
 import PromotedJobs from "../Components/PromotedJobs";
 import Contact from "./contact";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function HomePage() {
     return (
@@ -22,6 +23,7 @@ export default function HomePage() {
             <PromotedJobs />
             <Contact />
             <Footer />
+            <ToastContainer />
         </div>
     );
 }

@@ -20,7 +20,7 @@ import FormLabel from "@mui/material/FormLabel";
 import {jwtDecode} from 'jwt-decode';
 import axiosInstance from '../axios';
 import { useNavigate } from 'react-router-dom';
-import { toast } from "react-toastify";
+import { toast , ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 //added 
 
@@ -142,11 +142,13 @@ const handleSubmit = (e) => {
 
           const decoded = jwtDecode(res.data.access); // Decode the JWT token to check is_staff
           if (decoded.is_staff) {
-              toast.success("Admin login successful!");
+              
               navigate('/dashboard'); // Redirect to the dashboard for admins
+              toast.success("Admin login successful!");
           } else {
-            toast.success("User login successful!");
+          
               navigate('/'); // Redirect to the home page or user-specific page
+              toast.success("User login successful!");
           }
       })
       .catch((err) => {
@@ -265,6 +267,7 @@ const handleSubmit = (e) => {
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
+      <ToastContainer />
     </ThemeProvider>
   );
 };
