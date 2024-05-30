@@ -44,7 +44,7 @@ const Contact = () => {
 
   return (
     <>
-      <Container
+      <Container id='contact'
         sx={{
           pt: { xs: 8, sm: 10 },
           display: "flex",
