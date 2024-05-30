@@ -140,7 +140,7 @@ export default function JobsTableTest({ onEditJob, onViewDetails }) {
       })
       .catch((error) => {
         console.error("Error fetching data: ", error);
-        alert("error my nigga");
+        alert("error");
         setLoading(false);
       });
   }, []);

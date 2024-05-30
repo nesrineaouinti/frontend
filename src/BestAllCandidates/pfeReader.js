@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { usePdf } from '@mikecousins/react-pdf';
 import { GlobalWorkerOptions } from 'pdfjs-dist/build/pdf';
 import './PdfViewer.css'; // Create this CSS file for styling
+import { Box } from '@mui/material';
 
 // Configure PDF.js worker
 GlobalWorkerOptions.workerSrc = `${process.env.PUBLIC_URL}/pdf.worker.mjs`;
@@ -57,7 +58,7 @@ const PdfViewer = ({ file }) => {
   }, [pdfPage]);
 
   return (
-    <div className="pdf-viewer-container">
+    <Box >
       {!pdfDocument && <span>Loading...</span>}
       <canvas ref={canvasRef} />
       {Boolean(pdfDocument && pdfDocument.numPages) && (
@@ -79,7 +80,7 @@ const PdfViewer = ({ file }) => {
           </ul>
         </nav>
       )}
-    </div>
+    </Box>
   );
 };
 

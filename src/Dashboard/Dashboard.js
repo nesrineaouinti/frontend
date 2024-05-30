@@ -30,6 +30,7 @@ const Dashboard = () => {
           px: { xs: 1, md: 5 },
           pt: { xs: 7.5, md: 10 },
           pb: { xs: 1, md: 5 },
+          
         }}
       >
     <Box>
@@ -40,12 +41,13 @@ const Dashboard = () => {
         <Grid item xs={12} sm={6} md={3} lg={3}>
           <Box
             sx={{
+              height:'100',
               display: "flex",
               flexDirection: "column",
               p: 2,
               boxShadow: 3,
               borderLeft: 4,
-              borderColor: "rgba(255, 99, 132, 0.2)", // Replace 'rose' with a specific color code if 'rose' is not defined
+              borderColor: "rgba(255, 99, 132, 0.2)", 
               backgroundColor: "#fff",
               borderRadius: 2,
      
