@@ -17,8 +17,10 @@ import { toast } from "react-toastify";
 
 export default function ViewDetails() {
   const [applications, setApplications] = React.useState([]);
+  const [bestapplications,setBestApplications]=React.useState([]);
   const [isLoading, setIsLoading] = React.useState(false);
   const { jobId } = useParams(); //get jobId from URL sent from when we click view details
+  const [noMatch,setNoMatch]=React.useState(false);
 
   React.useEffect(() => {
     axiosInstance
@@ -30,10 +32,12 @@ export default function ViewDetails() {
         console.error("Error fetching data: ", error);
       });
   }, []);
-
   React.useEffect(() => {
     console.log(applications);
   }, [applications]);
+  React.useEffect(() => {
+    console.log(bestapplications);
+  }, [bestapplications]);
 
   const handleAlgorithm = () => {
     setIsLoading(true)
@@ -41,9 +45,11 @@ export default function ViewDetails() {
       .get(`/gimini-cv/${jobId}/`)
       .then((response) => {
         console.log(response)
-        setApplications(response.data);
-        toast.success("Your fetched have been successfully")
+        setBestApplications(response.data);
+        toast.success("fetched successfully")
         setIsLoading(false)
+        if (response.data.length === 0) {
+          setNoMatch(true);}
       })
       .catch((error) => {
         console.error("Error fetching data: ", error);
@@ -116,7 +122,9 @@ export default function ViewDetails() {
           </TabList>
           <TabPanel value={0} sx={{ height: "100%" }}>
             <Button onClick={handleAlgorithm}>execute algorithm</Button>
-            <Applicationss data={applications} />
+            {isLoading && <p>Loading please wait</p>}
+            <Applicationss data={bestapplications} />
+            {noMatch && <p>there are no candidates with good matching to this job </p>}
           </TabPanel>
 
           <TabPanel value={1}>

@@ -1,17 +1,15 @@
 import { React, useState, useEffect } from "react";
 import {
-  Avatar,
+
   Box,
   Button,
-  Chip,
+  
   IconButton,
-  Link,
-  Modal,
-  ModalClose,
-  ModalDialog,
   Sheet,
   Table,
   Typography,
+
+  
   Dropdown,
   Menu,
   MenuButton,
@@ -142,7 +140,7 @@ export default function JobsTableTest({ onEditJob, onViewDetails }) {
       })
       .catch((error) => {
         console.error("Error fetching data: ", error);
-        alert("error my nigga");
+        alert("error");
         setLoading(false);
       });
   }, []);

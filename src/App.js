@@ -11,7 +11,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import ResetPassPage from './pages/resetPassPage';
 import PasswordMeterInput from './Components/passwordMeterInput';
 import SignInPage from './pages/SignInPage';
-import SignUpPage from './pages/SignUpPage';
+
 import NavBar from './Components/navBar';
 import Hero from './Components/hero';
 import { CssBaseline } from "@mui/material";

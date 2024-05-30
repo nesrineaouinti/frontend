@@ -27,7 +27,7 @@ const ChartComponent = () => {
       },
       title: {
         display: true,
-        text: 'Apply per month',
+        text: 'Applications per month',
       },
     },
   };
